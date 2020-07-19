@@ -2,6 +2,10 @@
   <div>
     <form id="shopping-list">
       <h2>Welcome to Smart Checklist 👋</h2>
+      <span>A universal checklist with super powers.</span>
+      <br />
+      <br />
+      <br />
       <br />
       <br />
       <br />
@@ -40,6 +44,12 @@
             </span>
             <button type="button" @click="addItem()" class="btn btn-primary">
               <i class="fa fa-plus"></i> Add Product
+            </button>
+            <br />
+            <br />
+            <br />
+            <button type="button" class="btn btn-danger" @click="clearList()">
+              Clear Product List
             </button>
           </div>
           <div class="col-sm-8">
@@ -158,6 +168,9 @@ export default {
     },
     editItemComplete: function(item) {
       item.inEditMode = false;
+    },
+    clearList: function() {
+      this.itemsList = [];
     }
   }
 };
