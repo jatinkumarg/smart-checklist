@@ -51,6 +51,12 @@
             <button type="button" class="btn btn-danger" @click="clearList()">
               Clear Product List
             </button>
+            <br />
+            <br />
+            <br />
+            <button type="button" class="btn btn-dark" @click="convert()">
+              Convert List to PDF
+            </button>
           </div>
           <div class="col-sm-8">
             <table
@@ -117,6 +123,9 @@
 </template>
 
 <script>
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
+
 export default {
   name: "Main",
   data: function() {
@@ -171,6 +180,19 @@ export default {
     },
     clearList: function() {
       this.itemsList = [];
+    },
+    convert() {
+      let doc = new jsPDF();
+      let col = ['Product', "Quantity"];
+      let rows = [];
+
+      this.itemsList.forEach(item => {      
+        let temp = [item.itemName, item.quantity];
+        rows.push(temp);
+      });        
+
+      doc.autoTable(col, rows);
+      doc.save('document.pdf');
     }
   }
 };
